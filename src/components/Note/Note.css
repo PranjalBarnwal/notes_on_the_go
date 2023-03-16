@@ -16,3 +16,18 @@
     outline: none;
     border: none;
 }
+.trash{
+    width: 29px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 100ms;
+}
+.note:hover .trash{
+    opacity: 1;
+}
+.note_footer{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
