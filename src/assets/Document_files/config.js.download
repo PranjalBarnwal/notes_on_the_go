@@ -1,0 +1,27 @@
+;(function () {
+  const fullConfig = {"prod": {"platform": "web", "is_platform_app": true, "release_stage": "stable", "platform_group": "web", "release_stage_group": "prod", "dist_id": "e1f0afa4-ebfc-43a2-942b-8cca6fdd36a2", "warn_about_missing_translations": false, "datadog_rum_client_token": "pub7053c071b1aaaa8d31c42daa6c5442a3", "datadog_rum_application_id": "afce4d63-604f-40ba-964e-88f2269f72df", "document_sync_api_endpoint": "https://document-sync-4-prod.api.pitch.com", "document_sync_api_cdn_endpoint": "https://document-sync-4-prod-cdn.api.pitch.com", "app_asset_endpoint": "https://pitch-publish-user-assets.imgix.net", "publish_user_assets_endpoint": "https://pitch-publish-user-assets.imgix.net", "templates_offline_support": false, "bugsnag_api_key": "1b5a7429aec28a7c618a0b8efff7bffe", "third_party_notices_link": "https://e1f0afa4-ebfc-43a2-942b-8cca6fdd36a2.try.pitch.com/e1f0afa4-ebfc-43a2-942b-8cca6fdd36a2/third-party-notices.html", "base_web_url": "https://app.pitch.com", "base_website_url": "https://pitch.com", "base_platform_app_url": "https://pitch.com", "platform_resources_url": "/static/platform/e1f0afa4-ebfc-43a2-942b-8cca6fdd36a2/", "submit_template_link": "https://pitchapp.typeform.com/to/YQen27Go#source=presentations&medium=web&campaign=2022_q2_publishing_beta", "eql_pledge_presentation_collection_id": "2fe570df-3a6b-435b-8ee2-dade8ce1fd1e", "auth_client_id_web_2": "TAZUl8D8OK53lYBIQ5mZo0zu07edCwP0", "auth_endpoint": "auth.pitch.com", "enable_auth_endpoints": false, "base_external_link_url": "https://pitch.com", "xoch_snowplow_tracker_address": "https://s.pitch.com", "xoch_snowplow_post_path": "/78a39/de7", "segment_enabled": false, "segment_write_key": "todo", "segment_cdn_url": "https://evs.owl.services.pitch.com", "segment_api_host": "api.owl.services.pitch.com/v1", "algolia_app_id": "OR8037MFXD", "algolia_index_prefix": "prod", "algolia_server_referer": "https://pitch.com/templates", "enable_search_results_page": true, "maybe-reduce-vpx": false, "win": false, "linux": false, "mac": false, "web": true, "ios": false, "android": false, "platforms": ["win", "linux", "mac", "web", "ios", "android"], "local-dev": false, "playground": false, "unit-tests": false, "integration-tests": false, "ui-tests": false, "branch": false, "canary-dev": false, "local-prod": false, "branch-prod": false, "canary": false, "stable": true, "app-store": false, "version": "1.44.0-stable+gde8bbe864ci5288970", "git_commit": "de8bbe864b610bce8f2d6c3dffce40bee22cd253", "ci_build_number": 5288970, "channel_name": "stable", "channel_name_desktop_app": "latest", "channel_name_mobile_app": "stable"}, "default": "prod", "env_overrides": {"release_stage": "PITCH_RELEASE_STAGE", "document_sync_api_endpoint": "DOCUMENT_SYNC_API_ENDPOINT", "document_sync_api_cdn_endpoint": "DOCUMENT_SYNC_API_CDN_ENDPOINT", "app_asset_endpoint": "APP_ASSET_ENDPOINT", "publish_user_assets_endpoint": "PUBLISH_USER_ASSETS_ENDPOINT", "auth_client_id_web_2": "PITCH_AUTH_CLIENT_ID", "auth_endpoint": "PITCH_AUTH_ENDPOINT", "xoch_snowplow_tracker_address": "PITCH_XOCH_SNOWPLOW_TRACKER_ADDRESS", "xoch_snowplow_post_path": "PITCH_XOCH_SNOWPLOW_POST_PATH", "algolia_index_prefix": "ALGOLIA_INDEX_PREFIX"}}
+
+  /** Returns "prod" or "dev". */
+  const determineStageGroup = (hostname) => {
+    if (window.pitch_release_stage_group_override != undefined) {
+      return window.pitch_release_stage_group_override
+    }
+
+    if (!hostname) throw new Error('hostname was not expected to be null')
+
+    if (hostname.endsWith('.try.pitch.com')) return 'prod'
+    if (hostname.endsWith('.try-prod.pitch.com')) return 'prod'
+    if (hostname.endsWith('.try-dev.pitch.com')) return 'dev'
+
+    if (hostname.endsWith('.platform.pitch.com')) return 'prod'
+    if (hostname.endsWith('.platform-prod.pitch.com')) return 'prod'
+    if (hostname.endsWith('.platform-dev.pitch.com')) return 'dev'
+
+    return fullConfig.default
+  }
+
+  const stageGroup = determineStageGroup(
+    window.__pitch_export_base_web_url__ || window.location.hostname
+  )
+  window['pitch_config'] = fullConfig[stageGroup]
+})()

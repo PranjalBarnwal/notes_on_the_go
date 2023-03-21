@@ -1,12 +1,13 @@
 import Sidebar from "./components/Sidebar/Sidebar";
 import "./App.css";
 import NoteContainer from "./components/NoteContainer/NoteContainer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes-app")) || []
+  );
 
   const deleteNote = (id) => {
-    console.log(id);
     const tempNotes = [...notes];
 
     const index = tempNotes.findIndex((item) => item.id === id);
@@ -24,10 +25,28 @@ function App() {
     });
     setNotes(tempNotes);
   };
+
+  const updateText = (text, id) => {
+    const tempNotes = [...notes];
+
+    const index = tempNotes.findIndex((item) => item.id === id);
+    if (index < 0) return;
+
+    tempNotes[index].text = text;
+    setNotes(tempNotes);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("notes-app", JSON.stringify(notes));
+  }, [notes]);
   return (
     <div className="App">
       <Sidebar addNote={addNote} />
-      <NoteContainer notes={notes} deleteNote={deleteNote} />
+      <NoteContainer
+        notes={notes}
+        deleteNote={deleteNote}
+        updateText={updateText}
+      />
     </div>
   );
 }
