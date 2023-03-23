@@ -33,6 +33,7 @@ function App() {
     if (index < 0) return;
 
     tempNotes[index].text = text;
+
     setNotes(tempNotes);
   };
 

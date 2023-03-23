@@ -5,7 +5,7 @@ const NoteContainer = (props) => {
   const notes = props.notes;
   return (
     <div className="note-container">
-      <h2>Notes</h2>
+      <h1>Notes On The Go</h1>
 
       <div className="note-container_notes custom-scroll">
         {notes.length > 0 ? (
@@ -15,7 +15,8 @@ const NoteContainer = (props) => {
               note={item}
               deleteNote={props.deleteNote}
               updateText={props.updateText}
-            />
+             
+            />                        
           ))
         ) : (
           <h2>No notes present</h2>
