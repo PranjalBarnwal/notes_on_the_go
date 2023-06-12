@@ -7,8 +7,8 @@ const NoteContainer = (props) => {
   const [modal, setModal] = useState(true);
   return (
     <div className="note-container">
-      <h1>Notes App using React</h1>
-
+      <h1>Notes App React</h1>
+    <div className="modalparent">
       {modal&& (notes==0) && (
         <div className="modal">
           <div>
@@ -29,6 +29,7 @@ const NoteContainer = (props) => {
           <br />
         </div>
       )}
+      </div>
       <div className="note-container_notes custom-scroll">
         {notes.length > 0 ? (
           notes.map((item, index) => (

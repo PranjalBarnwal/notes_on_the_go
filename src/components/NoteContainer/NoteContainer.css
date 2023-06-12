@@ -2,11 +2,16 @@
     background: rgb(190, 187, 187);
     padding: 20px;
     border:3px solid black;
-    width:600px;
+    width:25rem;
     position: absolute;    
     top: 30%;
     left: 30%;
     translate: (-50%,-50%);
+}
+.modalparent{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 .cross{
     cursor: pointer;
