@@ -47,15 +47,7 @@ const Note = (props) => {
 
   return (
     <div className="note" style={{ backgroundColor: props.note.color }}>
-      <textarea
-        name=""
-        id=""
-        cols="0"
-        rows="1"
-        className="note_head_text"
-        // defaultValue={props.noteHead}
-        // onChange={(event) => updateText(event.target.value, props.note.id)}
-      ></textarea>
+      
 
       <textarea
         className="note_text"

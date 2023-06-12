@@ -1,7 +1,27 @@
+.modal{
+    background: rgb(190, 187, 187);
+    padding: 20px;
+    border:3px solid black;
+    width:600px;
+    position: absolute;    
+    top: 30%;
+    left: 30%;
+    translate: (-50%,-50%);
+}
+.cross{
+    cursor: pointer;
+    border: 1px solid black;
+    width: 40px;
+}
+.modal>div{
+    display: flex;
+    justify-content: space-between;
+}
+
 .note-container{
 height: 100%;
 }
-.note-container h1,h2{
+.note-container h1,h3{
     display: flex;
     width: 100vw;
     justify-content: center;
